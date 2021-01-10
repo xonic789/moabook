@@ -14,8 +14,7 @@ import java.util.List;
 @Getter
 public class SavingList {
 
-    public SavingList(Long id, String title, String subTitle, LocalDateTime startday, Byte deleted, Account account, List<Saving> savings) {
-        this.id = id;
+    public SavingList(String title, String subTitle, LocalDateTime startday, Byte deleted, Account account, List<Saving> savings) {
         this.title = title;
         this.subTitle = subTitle;
         this.startday = startday;

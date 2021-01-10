@@ -23,8 +23,7 @@ public class Saving {
 
     private int price;
 
-    public Saving(Long id, SavingList savingList, LocalDateTime day, int price) {
-        this.id = id;
+    public Saving(SavingList savingList, LocalDateTime day, int price) {
         this.savingList = savingList;
         this.day = day;
         this.price = price;

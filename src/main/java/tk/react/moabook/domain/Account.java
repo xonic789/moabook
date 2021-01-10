@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Account {
 
-    public Account(Long id, String name, String kinds, String members, Byte deleted, Member member, List<Income> incomes, List<Expenditure> expenditures, List<SavingList> savingList) {
-        this.id = id;
+    public Account(LocalDateTime createDay, String name, String kinds, String members, Byte deleted, Member member, List<Income> incomes, List<Expenditure> expenditures, List<SavingList> savingList, List<Category> categories) {
+        this.createDay = createDay;
         this.name = name;
         this.kinds = kinds;
         this.members = members;
@@ -22,11 +23,15 @@ public class Account {
         this.incomes = incomes;
         this.expenditures = expenditures;
         this.savingList = savingList;
+        this.categories = categories;
     }
 
     @Id @GeneratedValue
     @Column(name = "account_id")
     private Long id;
+
+    private LocalDateTime createDay;
+
 
     private String name;
     private String kinds;
@@ -49,6 +54,7 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<SavingList> savingList = new ArrayList<>();
 
-
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Category> categories = new ArrayList<>();
 
 }

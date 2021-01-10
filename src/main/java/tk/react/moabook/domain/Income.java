@@ -13,8 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Income {
 
-    public Income(Long id, String mainCategory, String subCategory, LocalDateTime day, String memo, int price, Account account) {
-        this.id = id;
+    public Income(String mainCategory, String subCategory, LocalDateTime day, String memo, int price, Account account) {
         this.mainCategory = mainCategory;
         this.subCategory = subCategory;
         this.day = day;
@@ -37,6 +36,10 @@ public class Income {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 
 

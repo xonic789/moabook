@@ -12,8 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Expenditure {
 
-    public Expenditure(Long id, String mainCategory, String subCategory, LocalDateTime day, String memo, int price, Account account) {
-        this.id = id;
+    public Expenditure(String mainCategory, String subCategory, LocalDateTime day, String memo, int price, Account account) {
         this.mainCategory = mainCategory;
         this.subCategory = subCategory;
         this.day = day;
@@ -35,4 +34,8 @@ public class Expenditure {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
