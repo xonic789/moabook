@@ -7,7 +7,7 @@ import tk.react.moabook.domain.Member;
 import tk.react.moabook.repository.MemberRepository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -75,10 +75,23 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public Optional<List<Member>> login(String email, String password) {
+    public Member login(String email, String password) {
         List<Member> members = memberRepository.findAll();
+        members.stream()
+                .filter(m -> m.getEmail().contains(email))
+                .collect(Collectors.toList());
 
-        return Optional.ofNullable(memberRepository.findAll());
+
+        for (Member member : members) {
+            if(member.getEmail()!=null&&member.getPassword()!=null){
+                if(member.getEmail().equals(email)&&member.getPassword().equals(password)){
+                    return member;
+                }else {
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 
 
