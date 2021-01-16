@@ -27,16 +27,5 @@ class MemberServiceImplTest {
 
     @Test
     public void createMember() throws Exception{
-        //given
-        Member member = new Member();
-
-
-        //when
-        Long id = memberService.join(member);
-        Member login = memberService.login("xonic789@naver.com", "1234");
-
-        //then
-        assertEquals(member,memberRepository.findOne(id));
-        assertEquals(member.getId(),login.getId());
     }
 }
