@@ -21,7 +21,7 @@ public class Expenditure {
         this.account = account;
     }
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "expenditure_id")
     private Long id;
 

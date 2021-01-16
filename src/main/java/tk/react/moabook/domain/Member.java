@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import tk.react.moabook.domain.enums.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,10 +16,9 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-@ToString
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
@@ -26,25 +26,25 @@ public class Member {
     private String email;
     private String password;
 
-    private String kakao;
-    private String naver;
-    private String google;
+    @Embedded
+    private LoginAPI api;
 
     private String nickName;
     private LocalDate birthday;
-    private String gender;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     private String image;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member")
     private List<Account> accounts = new ArrayList<>();
 
-    public Member(String name, String email, String password, String kakao, String naver, String google, String nickName, LocalDate birthday, String gender, String image) {
+    public Member(String name, String email, String password, LoginAPI api, String nickName, LocalDate birthday, Gender gender, String image) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.kakao = kakao;
-        this.naver = naver;
-        this.google = google;
+        this.api = api;
         this.nickName = nickName;
         this.birthday = birthday;
         this.gender = gender;

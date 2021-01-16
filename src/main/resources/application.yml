@@ -1,8 +1,12 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/moabook
-    username: sa
-    password:
+#    url: jdbc:h2:tcp://localhost/~/moabook
+    url: jdbc:mysql://118.67.128.36:3306/mydealdb?serverTimezone=UTC&characterEncoding=UTF-8
+    username: mydeal
+    password: Dd3552468!
+#    username: sa
+#    password:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     driver-class-name: org.h2.Driver
 
   devtools:
@@ -14,7 +18,7 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        show_sql: true
+#        show_sql: true
         format_sql: true
 
 logging.level:

@@ -22,7 +22,7 @@ public class Income {
         this.account = account;
     }
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "income_id")
     private Long id;
 

@@ -2,6 +2,8 @@ package tk.react.moabook.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import tk.react.moabook.domain.enums.DeletedStatus;
+import tk.react.moabook.domain.enums.Kind;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Account {
 
-    public Account(LocalDateTime createDay, String name, String kinds, String members, Byte deleted, Member member, List<Income> incomes, List<Expenditure> expenditures, List<SavingList> savingList, List<Category> categories) {
+
+
+    public Account(LocalDateTime createDay, String name, Kind kinds, Members members, DeletedStatus deleted, Member member, List<Income> incomes, List<Expenditure> expenditures, List<SavingList> savingList, List<Category> categories) {
         this.createDay = createDay;
         this.name = name;
         this.kinds = kinds;
@@ -26,7 +30,7 @@ public class Account {
         this.categories = categories;
     }
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Long id;
 
@@ -34,9 +38,15 @@ public class Account {
 
 
     private String name;
-    private String kinds;
-    private String members;
-    private Byte deleted;
+
+    @Enumerated(EnumType.STRING)
+    private Kind kinds;
+
+    @Embedded
+    private Members members;
+
+    @Enumerated(EnumType.STRING)
+    private DeletedStatus deleted;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

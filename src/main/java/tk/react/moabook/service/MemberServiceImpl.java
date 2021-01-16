@@ -1,20 +1,26 @@
 package tk.react.moabook.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.react.moabook.domain.Member;
+import tk.react.moabook.repository.CategoryRepository;
 import tk.react.moabook.repository.MemberRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
+
+//    public MemberServiceImpl(MemberRepository memberRepository){
+//        this.memberRepository=memberRepository;
+//    }
 
     /**
      * 회원 가입

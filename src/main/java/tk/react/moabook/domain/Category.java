@@ -2,6 +2,7 @@ package tk.react.moabook.domain;
 
 
 import lombok.Getter;
+import tk.react.moabook.domain.enums.Kind;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,11 +12,12 @@ import java.util.List;
 @Getter
 public class Category {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long id;
 
-    private Byte kind;
+    @Enumerated(EnumType.STRING)
+    private Kind kind;
 
     private String main_name;
     private String sub_name;
