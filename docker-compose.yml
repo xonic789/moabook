@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  postgres:
+    platform: linux/x86_64
+    image: 'postgres:13.4'
+    restart: always
+    environment:
+      POSTGRES_DB: moabook
+      POSTGRES_USER: xonic
+      POSTGRES_PASSWORD: 12345678
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres_moabook_vol:/var/lib/postgresql/data'
+volumes:
+  postgres_moabook_vol:
